@@ -17,8 +17,7 @@ class Network2(nn.Module):
         self.relu = nn.ReLU(True)
 
     def forward(self, x):
-        with torch.no_grad():
-            x = self.vit(x)
+        x = self.vit(x)
         x = self.relu(x)
         x = self.fc(x)
         return x
