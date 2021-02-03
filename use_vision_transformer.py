@@ -6,6 +6,7 @@ import torch.backends.cudnn as cudnn
 from backbone import Network2
 from dataset import Cifar10
 import os
+from vision_transformer_pytorch import VisionTransformer
 
 
 def evaluate(model, loader):
@@ -23,7 +24,7 @@ def evaluate(model, loader):
     return correct / total
 
 
-if __name__ == '__main__':
+def run():
     num_epoch = 500
     data_vector_dim = 20
     item_of_single_class = 10
@@ -88,3 +89,13 @@ if __name__ == '__main__':
         if epoch % cycle_epoches_for_test == 1:
             print("epoch:{}\tn_item:{}\tacc:{:.6f}".format(epoch, n_item, evaluate(net, test_dataloader)))
         # scheduler.step()
+
+
+if __name__ == '__main__':
+    model = VisionTransformer.from_pretrained('ViT-B_16')
+    inputs = torch.randn(1, 3, *model.image_size)
+    # model(inputs)
+    print("model(inputs).shape is", model(inputs).shape)
+    # model.extract_features(inputs)
+    print("model.extract_features(inputs).shape is", model.extract_features(inputs).shape)
+    # run()
