@@ -11,6 +11,8 @@ class Network2(nn.Module):
         super().__init__()
         # self.resnet50 = torchvision.models.resnet50(pretrained=False)
         self.vit = VisionTransformer.from_name('ViT-B_16', image_size=32)
+        for param in self.parameters():
+            param.requires_grad = False
         self.fc = nn.Linear(1000, 10)
         self.relu = nn.ReLU(True)
 
