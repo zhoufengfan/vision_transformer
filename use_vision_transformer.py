@@ -11,10 +11,8 @@ from vision_transformer_pytorch import VisionTransformer
 
 def evaluate(model, loader):
     model.eval()
-
     correct = 0
     total = len(loader.dataset)
-
     for x, y in loader:
         x, y = x.cuda(), y.cuda()
         with torch.no_grad():
@@ -92,10 +90,11 @@ def run():
 
 
 if __name__ == '__main__':
-    model = VisionTransformer.from_pretrained('ViT-B_16')
-    inputs = torch.randn(1, 3, *model.image_size)
-    # model(inputs)
-    print("model(inputs).shape is", model(inputs).shape)
-    # model.extract_features(inputs)
-    print("model.extract_features(inputs).shape is", model.extract_features(inputs).shape)
-    # run()
+    # model = VisionTransformer.from_pretrained('ViT-B_16')
+    # print("*model.image_size is", *model.image_size)
+    # inputs = torch.randn(1, 3, *model.image_size)
+    # # model(inputs)
+    # print("model(inputs).shape is", model(inputs).shape)
+    # # model.extract_features(inputs)
+    # print("model.extract_features(inputs).shape is", model.extract_features(inputs).shape)
+    run()
